@@ -2,7 +2,7 @@ var request = require('request');
 var fs = require('fs');
 var ght = require("./secrets.js");
 
-var filepath = "./avatars/";
+var filepath = "./avatars";
 
 console.log('Welcome to the GitHub Avatar Downloader!');
 
@@ -76,7 +76,7 @@ getRepoContributors("jquery", "jquery", function(err, result) {
     //console.log(elementObj["avatar_url"]);
 
     var url = elementObj["avatar_url"];
-    downloadImageByURL(url, filepath + fileNo);
+    downloadImageByURL(url, filepath + "/" + fileNo);
 
     fileNo++;
   }
