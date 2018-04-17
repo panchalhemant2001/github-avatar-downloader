@@ -3,8 +3,34 @@ var fs = require('fs');
 var ght = require("./secrets.js");
 
 var filepath = "./avatars";
+var repName = "jquery";   //default repository name for demo purpose
+var ownerName ="jquery";  //default owner name for demo purpose
+
 
 console.log('Welcome to the GitHub Avatar Downloader!');
+
+
+
+
+//Getting repository name and owner name from command line arguments
+//Getting parameters values
+var args = process.argv.slice(2);
+//console.log("Length : " + args.length);
+
+if(args.length <=1) {
+  console.log("Please specify guthub repository name and owner name...");
+  console.log("Program now will run for default repository and owner names (jquery, jquery)....");
+} else {
+  repName = args[0];
+  ownerName = args[1];
+
+  console.log(repName, ownerName);
+}
+
+
+
+
+
 
 function getRepoContributors(repoOwner, repoName, cb) {
 
@@ -64,7 +90,8 @@ function downloadImageByURL(url, filepath) {
 
 
 //calling getRepoContributors() function
-getRepoContributors("jquery", "jquery", function(err, result) {
+//Passing the repository name and owner name from command line arguments or default (jquery, jquery)
+getRepoContributors(repName, ownerName, function(err, result) {
   console.log("Errors:", err);
   //console.log("Result:", result);
 
